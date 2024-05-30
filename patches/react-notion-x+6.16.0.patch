@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-notion-x/src/styles.css b/node_modules/react-notion-x/src/styles.css
+index 71b8b4a..ef597f0 100644
+--- a/node_modules/react-notion-x/src/styles.css
++++ b/node_modules/react-notion-x/src/styles.css
+@@ -62,7 +62,7 @@
+   --notion-item-purple: rgba(103, 36, 222, 0.2);
+   --notion-item-gray: rgba(155, 154, 151, 0.4);
+ 
+-  --notion-max-width: 720px;
++  --notion-max-width: 920px;
+   --notion-header-height: 45px;
+ }
+ 

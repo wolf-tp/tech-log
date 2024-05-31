@@ -59,4 +59,11 @@ const StyledWrapper = styled.div`
     margin: 0 auto;
     max-width: 62rem;
   }
+
+  .notion-page {
+    @media (min-width: 1024px) {
+      width: 90% !important;
+    }
+    
+  }
 `

@@ -44,17 +44,17 @@ const PostDetail: React.FC<Props> = () => {
 export default PostDetail
 
 const StyledWrapper = styled.div`
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
-  max-width: 70rem;
   @media only screen and (min-width: 600px) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     background-color: ${({ theme }) =>
       theme.scheme === "light" ? "white" : theme.colors.gray4};
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
     border-radius: 1.5rem;
+    max-width: 70rem;
   }
 
   margin: 0 auto;
@@ -64,6 +64,7 @@ const StyledWrapper = styled.div`
   }
 
   .notion-page {
+    width: 100% !important;
     @media (min-width: 1024px) {
       width: 90% !important;
     }

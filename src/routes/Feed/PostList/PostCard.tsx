@@ -47,17 +47,32 @@ const PostCard: React.FC<Props> = ({ data }) => {
               {data.title}
             </motion.h3>
           </header>
-          <div className="date">
-            <div className="content">
-              {formatDate(
-                data?.date?.start_date || data.createdTime,
-                CONFIG.lang
-              )}
+
+          {data?.author?.[0]?.name && (
+            <div className="author">
+              <Image
+                css={{ borderRadius: "50%" }}
+                src={data.author[0].profile_photo || CONFIG.profile.image}
+                alt="profile_photo"
+                width={30}
+                height={30}
+              />
+              <div>
+                <div className="author-name">{data.author[0].name}</div>
+                <div>
+                  {formatDate(
+                    data?.date?.start_date || data.createdTime,
+                    CONFIG.lang
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
+
           <div className="summary">
             <p>{data.summary}</p>
           </div>
+
           <div className="tags">
             {data.tags &&
               data.tags.map((tag: string, idx: number) => (
@@ -83,11 +98,16 @@ const StyledWrapper = styled(Link)`
     transition-property: box-shadow;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
-    :hover {
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    @media (min-width: 1024px) {
+      :hover {
+        box-shadow: 0 10px 15px -3px rgba(56, 111, 185, 0.4),
+          0 4px 6px -2px rgba(56, 111, 185, 0.25);
+      }
     }
+
     > .category {
       position: absolute;
       top: 1rem;
@@ -147,6 +167,21 @@ const StyledWrapper = styled(Link)`
           color: ${({ theme }) => theme.colors.gray10};
           @media (min-width: 768px) {
             margin-left: 0;
+          }
+        }
+      }
+      > .author {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        div {
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          color: ${({ theme }) => theme.colors.gray10};
+          .author-name {
+            font-weight: 700;
+            color: ${({ theme }) => theme.colors.gray11};
           }
         }
       }

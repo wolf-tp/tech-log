@@ -5,6 +5,7 @@ import { formatDate } from "src/libs/utils"
 import Image from "next/image"
 import React from "react"
 import styled from "@emotion/styled"
+import { motion } from "framer-motion"
 
 type Props = {
   data: TPost
@@ -13,7 +14,10 @@ type Props = {
 const PostHeader: React.FC<Props> = ({ data }) => {
   return (
     <StyledWrapper>
-      <h1 className="title">{data.title}</h1>
+      <motion.h1 layoutId={`title-${data.id}`} layout className="title">
+        {data.title}
+      </motion.h1>
+
       {data.type[0] !== "Paper" && (
         <nav>
           <div className="top">
@@ -49,14 +53,18 @@ const PostHeader: React.FC<Props> = ({ data }) => {
             )}
           </div>
           {data.thumbnail && (
-            <div className="thumbnail">
+            <motion.div
+              className="thumbnail"
+              layoutId={`preview-img-${data.id}`}
+              layout
+            >
               <Image
                 src={data.thumbnail}
                 css={{ objectFit: "cover" }}
                 fill
                 alt={data.title}
               />
-            </div>
+            </motion.div>
           )}
         </nav>
       )}

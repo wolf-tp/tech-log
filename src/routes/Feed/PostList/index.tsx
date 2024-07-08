@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import PostCard from "src/routes/Feed/PostList/PostCard"
 import { DEFAULT_CATEGORY } from "src/constants"
 import usePostsQuery from "src/hooks/usePostsQuery"
+import styled from "@emotion/styled"
 
 type Props = {
   q: string
@@ -48,20 +49,38 @@ const PostList: React.FC<Props> = ({ q }) => {
 
       return newFilteredPosts
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, currentTag, currentCategory, currentOrder, setFilteredPosts])
 
   return (
     <>
-      <div className="my-2">
+      <StyledWrapper className="my-2">
         {!filteredPosts.length && (
           <p className="text-gray-500 dark:text-gray-300">Nothing! 😺</p>
         )}
         {filteredPosts.map((post) => (
           <PostCard key={post.id} data={post} />
         ))}
-      </div>
+      </StyledWrapper>
     </>
   )
 }
+
+const StyledWrapper = styled.div`
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+  display: block;
+  padding: 0.5rem 0;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+`
 
 export default PostList

@@ -44,9 +44,9 @@ const PostDetail: React.FC<Props> = () => {
 export default PostDetail
 
 const StyledWrapper = styled.div`
-  padding-top: 3rem;
   padding-bottom: 3rem;
   @media only screen and (min-width: 600px) {
+    padding-top: 3rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     background-color: ${({ theme }) =>

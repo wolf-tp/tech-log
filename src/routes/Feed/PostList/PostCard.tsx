@@ -6,6 +6,7 @@ import { TPost } from "../../../types"
 import Image from "next/image"
 import Category from "../../../components/Category"
 import styled from "@emotion/styled"
+import { motion } from "framer-motion"
 
 type Props = {
   data: TPost
@@ -23,18 +24,28 @@ const PostCard: React.FC<Props> = ({ data }) => {
           </div>
         )}
         {data.thumbnail && (
-          <div className="thumbnail">
+          <motion.div
+            layoutId={`preview-img-${data.id}`}
+            layout
+            className="thumbnail"
+          >
             <Image
               src={data.thumbnail}
               fill
               alt={data.title}
               css={{ objectFit: "cover" }}
             />
-          </div>
+          </motion.div>
         )}
-        <div data-thumb={!!data.thumbnail} data-category={!!category} className="content">
+        <div
+          data-thumb={!!data.thumbnail}
+          data-category={!!category}
+          className="content"
+        >
           <header className="top">
-            <h2>{data.title}</h2>
+            <motion.h3 layoutId={`title-${data.id}`} layout>
+              {data.title}
+            </motion.h3>
           </header>
           <div className="date">
             <div className="content">
@@ -72,10 +83,6 @@ const StyledWrapper = styled(Link)`
     transition-property: box-shadow;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-
-    @media (min-width: 768px) {
-      margin-bottom: 2rem;
-    }
 
     :hover {
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -116,8 +123,8 @@ const StyledWrapper = styled(Link)`
           flex-direction: row;
           align-items: baseline;
         }
-        h2 {
-          margin-bottom: 0.5rem;
+        h3 {
+          margin-bottom: 0.2rem;
           font-size: 1.125rem;
           line-height: 1.75rem;
           font-weight: 500;
@@ -132,7 +139,6 @@ const StyledWrapper = styled(Link)`
       }
       > .date {
         display: flex;
-        margin-bottom: 1rem;
         gap: 0.5rem;
         align-items: center;
         .content {
@@ -145,15 +151,15 @@ const StyledWrapper = styled(Link)`
         }
       }
       > .summary {
-        margin-bottom: 1rem;
         p {
-          display: none;
-          line-height: 2rem;
+          font-size: 0.875rem;
+          line-height: 1.5rem;
           color: ${({ theme }) => theme.colors.gray11};
-
-          @media (min-width: 768px) {
-            display: block;
-          }
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3; /* number of lines to show */
+          line-clamp: 3;
+          -webkit-box-orient: vertical;
         }
       }
       > .tags {

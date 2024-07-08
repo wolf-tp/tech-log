@@ -19,9 +19,13 @@ const PostCard: React.FC<Props> = ({ data }) => {
     <StyledWrapper href={`/${data.slug}`}>
       <article>
         {category && (
-          <div className="category">
+          <motion.div
+            layoutId={`category-${data.id}`}
+            layout
+            className="category"
+          >
             <Category>{category}</Category>
-          </div>
+          </motion.div>
         )}
         {data.thumbnail && (
           <motion.div
@@ -49,7 +53,11 @@ const PostCard: React.FC<Props> = ({ data }) => {
           </header>
 
           {data?.author?.[0]?.name && (
-            <div className="author">
+            <motion.div
+              layoutId={`author-${data.id}`}
+              layout
+              className="author"
+            >
               <Image
                 css={{ borderRadius: "50%" }}
                 src={data.author[0].profile_photo || CONFIG.profile.image}
@@ -66,19 +74,19 @@ const PostCard: React.FC<Props> = ({ data }) => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
 
           <div className="summary">
             <p>{data.summary}</p>
           </div>
 
-          <div className="tags">
+          <motion.div className="tags" layoutId={`tags-${data.id}`} layout>
             {data.tags &&
               data.tags.map((tag: string, idx: number) => (
                 <Tag key={idx}>{tag}</Tag>
               ))}
-          </div>
+          </motion.div>
         </div>
       </article>
     </StyledWrapper>

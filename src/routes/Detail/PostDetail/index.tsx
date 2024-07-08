@@ -6,6 +6,7 @@ import Category from "src/components/Category"
 import styled from "@emotion/styled"
 import NotionRenderer from "../components/NotionRenderer"
 import usePostQuery from "src/hooks/usePostQuery"
+import { motion } from "framer-motion"
 
 type Props = {}
 
@@ -20,11 +21,15 @@ const PostDetail: React.FC<Props> = () => {
     <StyledWrapper>
       <article>
         {category && (
-          <div css={{ marginBottom: "0.5rem" }}>
+          <motion.div
+            css={{ marginBottom: "0.5rem" }}
+            layoutId={`category-${data.id}`}
+            layout
+          >
             <Category readOnly={data.status?.[0] === "PublicOnDetail"}>
               {category}
             </Category>
-          </div>
+          </motion.div>
         )}
         {data.type[0] === "Post" && <PostHeader data={data} />}
         <div>

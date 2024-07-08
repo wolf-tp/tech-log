@@ -23,7 +23,11 @@ const PostHeader: React.FC<Props> = ({ data }) => {
           <div className="top">
             {data.author && data.author[0] && data.author[0].name && (
               <>
-                <div className="author">
+                <motion.div
+                  layoutId={`author-${data.id}`}
+                  layout
+                  className="author"
+                >
                   <Image
                     css={{ borderRadius: "50%" }}
                     src={data.author[0].profile_photo || CONFIG.profile.image}
@@ -32,7 +36,7 @@ const PostHeader: React.FC<Props> = ({ data }) => {
                     height={24}
                   />
                   <div className="">{data.author[0].name}</div>
-                </div>
+                </motion.div>
                 <div className="hr"></div>
               </>
             )}
@@ -43,7 +47,7 @@ const PostHeader: React.FC<Props> = ({ data }) => {
               )}
             </div>
           </div>
-          <div className="mid">
+          <motion.div layoutId={`tags-${data.id}`} layout className="mid">
             {data.tags && (
               <div className="tags">
                 {data.tags.map((tag: string) => (
@@ -51,7 +55,7 @@ const PostHeader: React.FC<Props> = ({ data }) => {
                 ))}
               </div>
             )}
-          </div>
+          </motion.div>
           {data.thumbnail && (
             <motion.div
               className="thumbnail"

@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://tech-log-alpha.vercel.app/
-
-# Sitemaps
-Sitemap: https://tech-log-alpha.vercel.app/sitemap.xml

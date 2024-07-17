@@ -21,6 +21,11 @@ const useScheme = (): [Scheme, SetScheme] => {
     setCookie("scheme", scheme)
 
     queryClient.setQueryData(queryKey.scheme(), scheme)
+
+    // Tailwind scheme
+    const classList = document.documentElement.classList
+    const isDarkMode = scheme === "dark"
+    isDarkMode ? classList.add("dark") : classList.remove("dark")
   }
 
   useEffect(() => {
@@ -28,6 +33,7 @@ const useScheme = (): [Scheme, SetScheme] => {
 
     const scheme = getCookie("scheme")
     setScheme(scheme === "dark" ? "dark" : "light")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return [scheme, setScheme]

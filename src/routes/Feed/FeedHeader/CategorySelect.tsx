@@ -1,10 +1,10 @@
 import useDropdown from "src/hooks/useDropdown"
 import { useRouter } from "next/router"
 import React from "react"
-import { MdExpandMore } from "react-icons/md"
 import { DEFAULT_CATEGORY } from "src/constants"
 import styled from "@emotion/styled"
 import { useCategoriesQuery } from "src/hooks/useCategoriesQuery"
+import { ChevronDownIcon } from "@heroicons/react/24/solid"
 
 type Props = {}
 
@@ -26,7 +26,7 @@ const CategorySelect: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div ref={dropdownRef} className="wrapper" onClick={handleOpen}>
-        {currentCategory} Posts <MdExpandMore />
+        {currentCategory} Posts <ChevronDownIcon className="w-6 aspect-auto" />
       </div>
       {opened && (
         <div className="content">

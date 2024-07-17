@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import Image from "next/image"
-import { Ref, forwardRef, useState } from "react"
+import { Ref, forwardRef } from "react"
 import { CONFIG } from "site.config"
 import Button, { useBtnLoadingExecute } from "src/components/Button"
 import { TextFieldController } from "src/components/Input"
@@ -29,8 +29,6 @@ const LoginDialog = forwardRef((_, ref: Ref<DialogRef>) => {
     resolver: resolver(authSchema),
     defaultValues: {
       type: "login",
-      email: "phuong2612.mobile@gmail.com",
-      password: "1234Phuongd",
     },
   })
 

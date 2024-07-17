@@ -47,9 +47,13 @@ const PostCard: React.FC<Props> = ({ data }) => {
           className="content"
         >
           <header className="top">
-            <motion.h3 layoutId={`title-${data.id}`} layout>
+            <motion.div
+              className="text-lg font-semibold"
+              layoutId={`title-${data.id}`}
+              layout
+            >
               {data.title}
-            </motion.h3>
+            </motion.div>
           </header>
 
           {data?.author?.[0]?.name && (
